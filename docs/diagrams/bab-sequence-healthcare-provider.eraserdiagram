@@ -1,0 +1,34 @@
+sequence-diagram
+// Healthcare Provider Product Journey
+HealthcareProvider [label: "Healthcare Provider", icon: user]
+Browser [icon: monitor]
+NextApp [label: "Next.js App", icon: server]
+Clerk [icon: lock]
+Sanity [icon: book]
+Supabase [icon: database]
+Email [label: "Resend", icon: mail]
+
+HealthcareProvider > Browser: Search product (AR)
+Browser > NextApp: GET /ar/products?q=analgesic
+NextApp > Sanity: Fetch localized content and filters
+Sanity > NextApp: Content results
+NextApp > Supabase: Query products (filtered)
+Supabase > NextApp: Product list
+NextApp > Browser: Render list (SSR + hydrate)
+
+HealthcareProvider > Browser: Open product detail
+Browser > NextApp: GET /ar/products/aspirin-plus
+NextApp > Sanity: Fetch product page content
+NextApp > Supabase: Fetch product specs & regulatory docs
+Supabase > NextApp: Specs + docs metadata
+NextApp > Browser: Render product detail + 3D viewer
+
+HealthcareProvider > Browser: Request quotation
+Browser > NextApp: POST /api/inquiry (form data)
+NextApp > Clerk: Verify role/session
+NextApp > Supabase: Persist inquiry
+NextApp > Email: Notify sales@babpharma.com
+Email > HealthcareProvider: Confirmation email
+NextApp > Browser: Thank you + SLA
+
+

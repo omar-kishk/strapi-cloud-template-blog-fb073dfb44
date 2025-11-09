@@ -1,0 +1,22 @@
+flowchart
+// Simple Process Flow Example
+Start [shape: oval, icon: play]
+Input [label: "Get User Input", icon: user]
+Validate [label: "Validate Data", icon: check-circle]
+Decision [label: "Is Valid?", shape: diamond, icon: help-circle]
+Process [label: "Process Data", icon: cpu]
+SaveDB [label: "Save to Database", icon: database]
+Success [label: "Show Success", icon: check, style.fill: #90EE90]
+Error [label: "Show Error", icon: x-circle, style.fill: #FFB6C6]
+End [shape: oval, icon: stop-circle]
+
+// Flow connections
+Start > Input
+Input > Validate
+Validate > Decision
+Decision > Process: Yes
+Decision > Error: No
+Process > SaveDB
+SaveDB > Success
+Success > End
+Error > End

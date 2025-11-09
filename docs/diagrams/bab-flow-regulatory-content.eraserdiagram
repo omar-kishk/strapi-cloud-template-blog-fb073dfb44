@@ -1,0 +1,23 @@
+flowchart
+// Regulatory Content Publishing Workflow
+Start [shape: oval, label: "Start", icon: play]
+Draft [label: "Create Draft in CMS", icon: edit-3]
+MedicalReview [label: "Medical Review", icon: stethoscope]
+RegulatoryApproval [label: "Regulatory Approval", icon: check-circle]
+Revisions [label: "Request Revisions", icon: refresh-ccw]
+Publish [label: "Publish Localized Content", icon: upload]
+Versioned [label: "Version + Audit Trail", icon: file-text]
+Monitor [label: "Monitor KPIs & A11y", icon: bar-chart]
+End [shape: oval, label: "End", icon: stop-circle]
+
+Start > Draft
+Draft > MedicalReview
+MedicalReview > RegulatoryApproval: Approved
+MedicalReview > Revisions: Changes required
+Revisions > Draft
+RegulatoryApproval > Publish
+Publish > Versioned
+Versioned > Monitor
+Monitor > End
+
+

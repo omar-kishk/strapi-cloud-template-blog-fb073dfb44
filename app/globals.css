@@ -1,0 +1,688 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Official BAB Pharma Fonts - From Brand Guidelines */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap'); /* English Headlines */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap'); /* English Body */
+@import url('https://fonts.googleapis.com/css2?family=Bukra:wght@700&display=swap'); /* Arabic Headlines */
+@import url('https://fonts.googleapis.com/css2?family=Somar:wght@300;400;700&display=swap'); /* Arabic Body */
+
+@layer base {
+  :root {
+    /* Using HSL values for full compatibility with shadcn/ui and theming */
+    --background: 0 0% 98%; /* Brighter background for better contrast */
+    --foreground: 348 5% 15%; /* Slightly darker foreground for better readability */
+
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 348 5% 15%; /* Consistent with foreground */
+ 
+    --popover: 0 0% 100%; /* White */
+    --popover-foreground: 348 5% 15%; /* Consistent with foreground */
+ 
+    --primary: 261 45% 35%; /* Slightly brighter purple for better contrast */
+    --primary-foreground: 0 0% 98%; /* High contrast white */
+ 
+    --secondary: 177 55% 58%; /* Brighter turquoise for better visibility */
+    --secondary-foreground: 348 5% 15%; /* Dark text on bright turquoise */
+ 
+    --muted: 0 0% 96%; /* Lighter muted background */
+    --muted-foreground: 348 5% 45%; /* Better contrast for muted text */
+ 
+    --accent: 0 0% 96%; /* Consistent with muted */
+    --accent-foreground: 261 45% 35%; /* Primary color for accent text */
+ 
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 88%; /* Slightly more visible borders */
+    --input: 0 0% 88%; /* Consistent with borders */
+    --ring: 261 45% 35%; /* Brighter focus ring */
+ 
+    --radius: 0.75rem;
+    
+    /* Official BAB Pharma Brand Colors - Enhanced Contrast */
+    --hero-purple: #4a2f7a; /* 20% brighter for better contrast */
+    --medium-turquoise: #52d4d0; /* 15% brighter for better readability */
+    --charcoal: #2E2A2B;
+    --whisper: #F9F9F9; /* Slightly brighter background */
+    
+    /* Additional Pharma Colors */
+    --pharma-green: #22c55e;
+    --pharma-blue: #3b82f6;
+    --pharma-red: #ef4444;
+  }
+
+  .dark {
+    /* Dark theme with improved contrast ratios and purple gradient background */
+    --background: 261 35% 8%; /* Darker purple-tinted background */
+    --foreground: 0 0% 95%; /* Brighter text for excellent readability */
+
+    --card: 261 25% 12%; /* Purple-tinted cards */
+    --card-foreground: 0 0% 95%; /* Consistent bright text */
+ 
+    --popover: 261 25% 12%; /* Consistent with cards */
+    --popover-foreground: 0 0% 95%; /* Bright text */
+ 
+    --primary: 177 60% 70%; /* Much brighter turquoise for dark mode */
+    --primary-foreground: 261 35% 8%; /* Dark purple text on bright turquoise */
+ 
+    --secondary: 261 55% 75%; /* Significantly brighter purple for dark mode readability */
+    --secondary-foreground: 261 35% 8%; /* Dark purple text on bright purple */
+ 
+    --muted: 261 20% 18%; /* Purple-tinted muted backgrounds */
+    --muted-foreground: 0 0% 75%; /* Much brighter muted text */
+ 
+    --accent: 261 20% 18%; /* Consistent with muted */
+    --accent-foreground: 0 0% 95%; /* Bright accent text */
+ 
+    --destructive: 0 70% 65%; /* Brighter destructive color */
+    --destructive-foreground: 261 35% 8%; /* Dark purple text on bright destructive */
+ 
+    --border: 261 15% 22%; /* Purple-tinted borders */
+    --input: 261 15% 22%; /* Consistent inputs */
+    --ring: 177 60% 70%; /* Bright focus ring */
+    
+    /* Dark theme enhanced brand colors */
+    --hero-purple: #8b6bb1; /* 40% brighter purple for dark mode readability */
+    --medium-turquoise: #7dd3d8; /* 25% brighter turquoise */
+    --charcoal: #4a4647; /* Lighter charcoal for dark mode */
+    --whisper: #1a1718; /* Dark whisper equivalent */
+    
+    /* Dark theme charts with better contrast */
+    --chart-1: #8b6bb1; /* Bright purple */
+    --chart-2: #7dd3d8; /* Bright turquoise */
+    --chart-3: #f0f0f0; /* Light gray */
+    --chart-4: #6b6568; /* Medium gray */
+    --chart-5: #a78bca; /* Light purple variant */
+  }
+
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Quicksand', var(--font-quicksand), sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* Dark mode gradient background */
+  .dark body {
+    background: linear-gradient(135deg, 
+      hsl(261, 35%, 8%) 0%,     /* BAB purple very dark */
+      hsl(261, 30%, 6%) 25%,    /* Even darker purple */
+      hsl(261, 25%, 4%) 50%,    /* Deepest purple */
+      hsl(261, 30%, 6%) 75%,    /* Back to darker purple */
+      hsl(261, 35%, 8%) 100%    /* BAB purple very dark */
+    );
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  /* Optional: Enhanced animated gradient background for more dynamic experience */
+  .dark body.animated-gradient {
+    background: linear-gradient(135deg, 
+      hsl(261, 35%, 8%) 0%,
+      hsl(261, 30%, 6%) 25%,
+      hsl(261, 25%, 4%) 50%,
+      hsl(261, 30%, 6%) 75%,
+      hsl(261, 35%, 8%) 100%
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 20s ease infinite;
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Animated gradient demo for showcase component */
+  .animated-gradient-demo {
+    background: linear-gradient(135deg, 
+      hsl(261, 35%, 8%) 0%,
+      hsl(261, 30%, 6%) 25%,
+      hsl(261, 25%, 4%) 50%,
+      hsl(261, 30%, 6%) 75%,
+      hsl(261, 35%, 8%) 100%
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 20s ease infinite;
+  }
+
+  /* Additional dark mode background for sections */
+  .dark .bg-background {
+    background: linear-gradient(135deg, 
+      hsl(261, 35%, 8%) 0%,     /* BAB purple very dark */
+      hsl(261, 30%, 6%) 25%,    /* Even darker purple */
+      hsl(261, 25%, 4%) 50%,    /* Deepest purple */
+      hsl(261, 30%, 6%) 75%,    /* Back to darker purple */
+      hsl(261, 35%, 8%) 100%    /* BAB purple very dark */
+    );
+  }
+  
+  /* Dark mode card backgrounds with subtle purple gradient */
+  .dark .bg-card {
+    background: linear-gradient(135deg, 
+      hsl(261, 25%, 12%) 0%,    /* Lighter purple for cards */
+      hsl(261, 20%, 10%) 50%,   /* Medium purple */
+      hsl(261, 25%, 12%) 100%   /* Back to lighter purple */
+    );
+  }
+
+  /* Dark mode muted backgrounds with purple tint */
+  .dark .bg-muted {
+    background: linear-gradient(135deg, 
+      hsl(261, 20%, 18%) 0%,    /* Purple-tinted muted */
+      hsl(261, 15%, 16%) 50%,   /* Darker purple-tinted */
+      hsl(261, 20%, 18%) 100%   /* Back to purple-tinted */
+    );
+  }
+
+  /* Enhanced gradient backgrounds for sections */
+  .dark .bg-gradient-to-br {
+    background: linear-gradient(135deg, 
+      hsl(261, 35%, 8%) 0%,     /* BAB purple very dark */
+      hsl(261, 30%, 6%) 25%,    /* Even darker purple */
+      hsl(261, 25%, 4%) 50%,    /* Deepest purple */
+      hsl(261, 30%, 6%) 75%,    /* Back to darker purple */
+      hsl(261, 35%, 8%) 100%    /* BAB purple very dark */
+    );
+  }
+  
+  /* Official BAB Pharma Typography Classes */
+  .headline-en {
+    font-family: 'Lora', serif;
+    font-weight: 400;
+  }
+  
+  .body-en {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
+  }
+  
+  .headline-ar {
+    font-family: 'Bukra', sans-serif;
+    font-weight: 700;
+    direction: rtl;
+  }
+  
+  .body-ar {
+    font-family: 'Somar', sans-serif;
+    font-weight: 400;
+    direction: rtl;
+  }
+  
+  /* Pharmaceutical-specific heading styles */
+  h1 {
+    font-family: 'Lora', serif;
+    font-weight: 600;
+  }
+  
+  h1[lang="ar"] {
+    font-family: 'Bukra', sans-serif;
+    font-weight: 700;
+    direction: rtl;
+  }
+  
+  h2, h3, h4, h5, h6 {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+  }
+  
+  h2[lang="ar"], h3[lang="ar"], h4[lang="ar"], h5[lang="ar"], h6[lang="ar"] {
+    font-family: 'Somar', sans-serif;
+    font-weight: 700;
+    direction: rtl;
+  }
+  
+  p, body {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
+  }
+  
+  p[lang="ar"], body[lang="ar"] {
+    font-family: 'Somar', sans-serif;
+    font-weight: 400;
+    direction: rtl;
+  }
+}
+
+@layer components {
+  /* BAB Pharma Brand Color Utilities - Enhanced Contrast */
+  .text-bab-purple { color: #40296e; }
+  .text-bab-purple-light { color: #7056a0; } /* Better contrast purple */
+  .text-bab-purple-dark { color: #8b6bb1; } /* Dark mode bright purple */
+  
+  .text-bab-turquoise { color: #62c6c2; }
+  .text-bab-turquoise-light { color: #52d4d0; } /* Enhanced readability */
+  .text-bab-turquoise-dark { color: #7dd3d8; } /* Dark mode bright turquoise */
+  
+  .text-bab-charcoal { color: #2E2A2B; }
+  .text-bab-charcoal-light { color: #4a4647; } /* Lighter for dark mode */
+  
+  .text-bab-whisper { color: #F7F7F7; }
+  .text-bab-whisper-enhanced { color: #F9F9F9; } /* Better contrast */
+  
+  .bg-bab-purple { background-color: #40296e; }
+  .bg-bab-purple-light { background-color: #7056a0; }
+  .bg-bab-purple-dark { background-color: #8b6bb1; }
+  
+  .bg-bab-turquoise { background-color: #62c6c2; }
+  .bg-bab-turquoise-light { background-color: #52d4d0; }
+  .bg-bab-turquoise-dark { background-color: #7dd3d8; }
+  
+  .bg-bab-charcoal { background-color: #2E2A2B; }
+  .bg-bab-charcoal-light { background-color: #4a4647; }
+  
+  .bg-bab-whisper { background-color: #F7F7F7; }
+  .bg-bab-whisper-enhanced { background-color: #F9F9F9; }
+  
+  .border-bab-purple { border-color: #40296e; }
+  .border-bab-purple-light { border-color: #7056a0; }
+  .border-bab-turquoise { border-color: #62c6c2; }
+  .border-bab-turquoise-light { border-color: #52d4d0; }
+  .border-bab-charcoal { border-color: #2E2A2B; }
+  .border-bab-whisper { border-color: #F7F7F7; }
+  
+  /* BAB Purple Gradient Utilities for consistent dark mode theming */
+  .bg-bab-gradient-dark {
+    background: linear-gradient(135deg, 
+      hsl(261, 35%, 8%) 0%,     /* BAB purple very dark */
+      hsl(261, 30%, 6%) 25%,    /* Even darker purple */
+      hsl(261, 25%, 4%) 50%,    /* Deepest purple */
+      hsl(261, 30%, 6%) 75%,    /* Back to darker purple */
+      hsl(261, 35%, 8%) 100%    /* BAB purple very dark */
+    );
+  }
+
+  .bg-bab-gradient-card {
+    background: linear-gradient(135deg, 
+      hsl(261, 25%, 12%) 0%,    /* Lighter purple for cards */
+      hsl(261, 20%, 10%) 50%,   /* Medium purple */
+      hsl(261, 25%, 12%) 100%   /* Back to lighter purple */
+    );
+  }
+  
+  /* Dark mode specific utilities */
+  .dark .text-bab-purple-auto { color: #8b6bb1; } /* Auto bright purple in dark mode */
+  .dark .text-bab-turquoise-auto { color: #7dd3d8; } /* Auto bright turquoise in dark mode */
+  .dark .bg-bab-purple-auto { background-color: #8b6bb1; }
+  .dark .bg-bab-turquoise-auto { background-color: #7dd3d8; }
+  
+  /* Pharmaceutical Background Gradients */
+  .bg-pharma-primary {
+    background: linear-gradient(135deg, #40296e 0%, #5c446e 100%);
+  }
+  
+  .bg-pharma-secondary {
+    background: linear-gradient(135deg, #62c6c2 0%, #14b8b3 100%);
+  }
+  
+  .bg-pharma-subtle {
+    background: linear-gradient(135deg, #F7F7F7 0%, #e8e2ef 100%);
+  }
+  
+  .bg-molecular {
+    background: radial-gradient(circle at 50% 50%, rgba(64, 41, 110, 0.1) 0%, rgba(98, 198, 194, 0.05) 50%, transparent 100%);
+  }
+  
+  /* Pharmaceutical Shadows */
+  .shadow-pharma-sm { box-shadow: 0 1px 2px 0 rgba(64, 41, 110, 0.05); }
+  .shadow-pharma-md { box-shadow: 0 4px 6px -1px rgba(64, 41, 110, 0.1), 0 2px 4px -1px rgba(64, 41, 110, 0.06); }
+  .shadow-pharma-lg { box-shadow: 0 10px 15px -3px rgba(64, 41, 110, 0.1), 0 4px 6px -2px rgba(64, 41, 110, 0.05); }
+  .shadow-pharma-xl { box-shadow: 0 20px 25px -5px rgba(64, 41, 110, 0.1), 0 10px 10px -5px rgba(64, 41, 110, 0.04); }
+  
+  /* Pharmaceutical Animations */
+  .animate-molecule-rotate { animation: spin 20s linear infinite; }
+  .animate-pharma-pulse { animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+  .animate-float { animation: float 6s ease-in-out infinite; }
+  .animate-fade-in { animation: fadeIn 0.5s ease-in-out; }
+  .animate-slide-up { animation: slideUp 0.5s ease-out; }
+  
+  /* Professional Medical Card Styling */
+  .geometric-pattern {
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(64, 41, 110, 0.03) 10px,
+      rgba(64, 41, 110, 0.03) 20px
+    );
+  }
+  
+  .medical-card {
+    @apply bg-white border border-gray-200 rounded-lg shadow-pharma-md p-6 transition-all duration-300 hover:shadow-pharma-lg;
+  }
+  
+  .prescription-badge {
+    @apply bg-pharma-red text-white text-xs px-2 py-1 rounded-full font-semibold;
+  }
+  
+  .otc-badge {
+    @apply bg-pharma-green text-white text-xs px-2 py-1 rounded-full font-semibold;
+  }
+  
+  .pharmaceutical-btn {
+    @apply bg-bab-purple text-white px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-300 shadow-pharma-md hover:shadow-pharma-lg;
+  }
+  
+  .pharmaceutical-btn-secondary {
+    @apply bg-bab-turquoise text-white px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-300 shadow-pharma-md hover:shadow-pharma-lg;
+  }
+
+  /* Custom button styles using theme variables */
+  .bab-button-turquoise {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90;
+  }
+  .dark .bab-button-turquoise {
+     @apply bg-primary text-primary-foreground hover:bg-primary/90;
+  }
+}
+
+@layer utilities {
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+}
+
+/* Print Styles for Medical Documentation */
+@media print {
+  .medical-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+  
+  .bg-pharma-primary,
+  .bg-pharma-secondary,
+  .bg-pharma-subtle {
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* High Contrast Mode for Accessibility */
+@media (prefers-contrast: high) {
+  :root {
+    --bab-purple: #2a1a48;
+    --bab-turquoise: #0d9b97;
+    --bab-charcoal: #000000;
+    --bab-whisper: #ffffff;
+  }
+}
+
+/* Pharmaceutical Component Styles */
+.pharma-card {
+  @apply bg-white border border-gray-200 rounded-xl shadow-pharma-md p-6;
+  @apply transition-all duration-300 hover:shadow-pharma-lg hover:scale-105;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.pharma-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(64, 41, 110, 0.15), 0 10px 10px -5px rgba(64, 41, 110, 0.1);
+}
+
+.pharma-button-primary {
+  @apply inline-flex items-center px-6 py-3 text-base font-semibold;
+  @apply text-white bg-bab-purple border border-transparent rounded-lg;
+  @apply shadow-pharma-md hover:shadow-pharma-lg;
+  @apply transition-all duration-300 ease-in-out;
+  @apply hover:bg-opacity-90 hover:scale-105;
+  @apply focus:outline-none focus:ring-2 focus:ring-bab-purple focus:ring-offset-2;
+  background: linear-gradient(135deg, #40296e 0%, #5c446e 100%);
+}
+
+.pharma-button-primary:hover {
+  background: linear-gradient(135deg, #5c446e 0%, #40296e 100%);
+  transform: translateY(-2px);
+}
+
+.pharma-button-secondary {
+  @apply inline-flex items-center px-6 py-3 text-base font-semibold;
+  @apply text-bab-purple bg-white border-2 border-bab-purple rounded-lg;
+  @apply shadow-pharma-md hover:shadow-pharma-lg;
+  @apply transition-all duration-300 ease-in-out;
+  @apply hover:bg-bab-purple hover:text-white hover:scale-105;
+  @apply focus:outline-none focus:ring-2 focus:ring-bab-purple focus:ring-offset-2;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.pharma-button-secondary:hover {
+  background: linear-gradient(135deg, #40296e 0%, #5c446e 100%);
+  transform: translateY(-2px);
+}
+
+.pharma-gradient-bg {
+  background: linear-gradient(135deg, #40296e 0%, #62c6c2 100%);
+}
+
+.pharma-gradient-text {
+  background: linear-gradient(135deg, #40296e 0%, #62c6c2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.pharma-glow {
+  box-shadow: 0 0 20px rgba(64, 41, 110, 0.3);
+}
+
+.molecule-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.molecule-floating {
+  animation: moleculeFloat 6s ease-in-out infinite;
+}
+
+@keyframes moleculeFloat {
+  0%, 100% {
+    transform: rotateY(0deg) rotateX(0deg) translateZ(0);
+  }
+  25% {
+    transform: rotateY(90deg) rotateX(10deg) translateZ(10px);
+  }
+  50% {
+    transform: rotateY(180deg) rotateX(0deg) translateZ(0);
+  }
+  75% {
+    transform: rotateY(270deg) rotateX(-10deg) translateZ(-10px);
+  }
+}
+
+.emergency-pulse {
+  animation: emergencyPulse 2s ease-in-out infinite;
+}
+
+@keyframes emergencyPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+.pharma-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #F7F7F7;
+  border-top: 4px solid #40296e;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Scrollbar Styling for Pharmaceutical Theme */
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #40296e #F7F7F7;
+}
+
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid #62c6c2;
+  outline-offset: 2px;
+}
+
+/* Print optimizations for medical documents */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
+    color: black;
+    background: white;
+  }
+  
+  .pharma-card {
+    border: 1px solid black;
+    page-break-inside: avoid;
+    margin-bottom: 20pt;
+  }
+}
+
+/* High contrast accessibility improvements */
+@media (prefers-contrast: high) {
+  .pharma-card {
+    border: 2px solid #000;
+  }
+  
+  .pharma-button-primary {
+    border: 2px solid #000;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .molecule-floating,
+  .animate-float,
+  .animate-pharma-pulse {
+    animation: none;
+  }
+  
+  .pharma-card:hover,
+  .pharma-button-primary:hover,
+  .pharma-button-secondary:hover {
+    transform: none;
+  }
+}
+
+/* Mobile-first responsive design */
+@media (max-width: 768px) {
+  .pharma-button-primary,
+  .pharma-button-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .headline-en,
+  .headline-ar {
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
+  
+  .pharma-card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* 3D Model Container Styling */
+.model-container {
+  background: radial-gradient(circle at center, rgba(98, 198, 194, 0.1) 0%, transparent 70%);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Pharmaceutical Data Table Styling */
+.pharma-table {
+  @apply w-full border-collapse bg-white rounded-lg overflow-hidden shadow-pharma-md;
+}
+
+.pharma-table th {
+  @apply bg-bab-purple text-white px-6 py-4 text-left font-semibold;
+  @apply text-sm uppercase tracking-wider;
+  background: linear-gradient(135deg, #40296e 0%, #5c446e 100%);
+}
+
+.pharma-table td {
+  @apply px-6 py-4 border-b border-gray-200 text-bab-charcoal;
+  @apply text-sm;
+}
+
+.pharma-table tr:nth-child(even) {
+  @apply bg-bab-whisper;
+}
+
+.pharma-table tr:hover {
+  @apply bg-blue-50 transition-colors duration-200;
+}
+
+/* Pharmaceutical Status Badges */
+.pharma-badge {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
+  @apply border border-transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pharma-badge-approved {
+  @apply bg-pharma-green text-white;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+}
+
+.pharma-badge-pending {
+  @apply bg-bab-turquoise text-white;
+  box-shadow: 0 2px 4px rgba(245, 158, 11, 0.2);
+}
+
+.pharma-badge-restricted {
+  @apply bg-pharma-red text-white;
+  box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
+}
+
+/* Status indicators using BAB brand colors */
+.status-pending {
+  @apply bg-bab-turquoise text-white;
+}
+
+/* Pharma-specific color utilities */
+.text-pharma-green { color: var(--pharma-green); }
+.text-pharma-blue { color: var(--pharma-blue); }
+.text-pharma-red { color: var(--pharma-red); }
+.bg-pharma-green { background-color: var(--pharma-green); }
+.bg-pharma-blue { background-color: var(--pharma-blue); }
+.bg-pharma-red { background-color: var(--pharma-red); }
+.bg-pharma-green\/10 { background-color: rgba(34, 197, 94, 0.1); }
+.bg-pharma-blue\/10 { background-color: rgba(59, 130, 246, 0.1); }
+.bg-pharma-red\/10 { background-color: rgba(239, 68, 68, 0.1); }

@@ -1,0 +1,16 @@
+sequence-diagram
+// User Authentication Sequence
+User [icon: user]
+Frontend [icon: monitor]
+Backend [icon: server]
+Database [icon: database]
+AuthService [label: "Auth Service", icon: lock]
+
+User > Frontend: Enter credentials
+Frontend > Backend: POST /login
+Backend > AuthService: Validate user
+AuthService > Database: Query user data
+Database > AuthService: Return user record
+AuthService > Backend: Generate JWT token
+Backend > Frontend: Return token + user info
+Frontend > User: Redirect to dashboard

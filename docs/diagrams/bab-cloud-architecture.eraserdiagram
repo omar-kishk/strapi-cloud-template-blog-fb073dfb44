@@ -1,0 +1,44 @@
+cloud-architecture-diagram
+
+// Edge & CDN
+Browser [label: "End User (AR/EN)", icon: monitor]
+Cloudflare [label: "Cloudflare CDN/WAF", icon: cloud]
+
+// Hosting
+Vercel [label: "Vercel (Next.js 14)", icon: server]
+EdgeMiddleware [label: "Edge Middleware (i18n, auth hints)", icon: lock]
+RouteHandlers [label: "Next.js Route Handlers / API", icon: server]
+
+// Core Services
+Clerk [label: "Clerk (AuthN/AuthZ)", icon: lock]
+Supabase [label: "Supabase (Postgres + RLS)", icon: database]
+SupabaseStorage [label: "Supabase Storage", icon: database]
+Sanity [label: "Sanity CMS", icon: book]
+
+// Observability & Messaging
+Sentry [label: "Sentry (Errors/Perf)", icon: alert-triangle]
+VercelAnalytics [label: "Vercel Analytics", icon: bar-chart]
+EmailService [label: "Resend (Email)", icon: mail]
+
+// External
+NUPCO [label: "NUPCO / Gov APIs", icon: globe]
+AssetCDN [label: "3D Asset CDN (GLTF/DRACO)", icon: image]
+
+// Connections
+Browser > Cloudflare
+Cloudflare > Vercel
+Vercel > EdgeMiddleware
+EdgeMiddleware > RouteHandlers
+
+RouteHandlers > Clerk
+RouteHandlers > Supabase
+RouteHandlers > Sanity
+RouteHandlers > EmailService
+RouteHandlers > AssetCDN
+RouteHandlers > NUPCO
+
+Supabase > SupabaseStorage
+Vercel > Sentry
+Vercel > VercelAnalytics
+
+

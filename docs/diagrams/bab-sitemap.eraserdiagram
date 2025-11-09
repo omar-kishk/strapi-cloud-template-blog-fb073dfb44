@@ -1,0 +1,32 @@
+flowchart
+// BAB Pharma Sitemap / Navigation
+Home [icon: home]
+ImportDistribution [label: "Import & Distribution", icon: globe]
+Manufacturing [label: "Manufacturing Excellence", icon: settings]
+Products [icon: package]
+NovelGenerics [label: "Novel Generics", icon: flask]
+MedicalDevices [label: "Medical Devices", icon: cpu]
+Nutraceuticals [label: "Nutraceuticals", icon: heart]
+SalesDistribution [label: "Sales & Distribution", icon: map]
+Financial [label: "Financial Highlights", icon: bar-chart]
+SupplyChain [label: "Supply Chain", icon: truck]
+Partners [icon: handshake]
+Compliance [label: "Compliance Center", icon: check-circle]
+About [icon: info]
+Careers [icon: briefcase]
+Contact [icon: mail]
+
+Home > ImportDistribution
+Home > Manufacturing
+Home > Products
+Products > NovelGenerics
+Products > MedicalDevices
+Products > Nutraceuticals
+Home > SalesDistribution
+Home > Financial
+Home > SupplyChain
+Home > Partners
+Home > Compliance
+Home > About
+Home > Careers
+Home > Contact

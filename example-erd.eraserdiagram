@@ -1,0 +1,56 @@
+entity-relationship-diagram
+// E-commerce Database Schema
+
+Users [icon: users, color: blue] {
+  id int PK
+  email varchar unique
+  password_hash varchar
+  first_name varchar
+  last_name varchar
+  created_at timestamp
+  updated_at timestamp
+}
+
+Products [icon: package, color: green] {
+  id int PK
+  name varchar
+  description text
+  price decimal
+  stock_quantity int
+  category_id int FK
+  created_at timestamp
+  updated_at timestamp
+}
+
+Categories [icon: folder, color: purple] {
+  id int PK
+  name varchar
+  description text
+  parent_id int FK
+}
+
+Orders [icon: shopping-cart, color: orange] {
+  id int PK
+  user_id int FK
+  total_amount decimal
+  status varchar
+  shipping_address text
+  created_at timestamp
+  updated_at timestamp
+}
+
+OrderItems [icon: list, color: yellow] {
+  id int PK
+  order_id int FK
+  product_id int FK
+  quantity int
+  unit_price decimal
+  subtotal decimal
+}
+
+// Relationships
+Users 1--* Orders
+Orders 1--* OrderItems
+Products 1--* OrderItems
+Categories 1--* Products
+Categories 1--* Categories

@@ -1,0 +1,432 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Optimal Tech Stack for BAB Pharma Website
+## Using Cursor IDE + Claude Code for AI-Assisted Development
+
+## 🚀 Recommended Primary Tech Stack
+
+### Frontend Framework: **Next.js 14 with App Router**
+**Why Perfect for Cursor + Claude Code:**
+- Excellent AI code completion and generation support
+- Well-documented patterns that Claude understands deeply
+- Built-in performance optimizations crucial for 3D content
+- SEO-friendly for pharmaceutical content discoverability
+- TypeScript support for enterprise-grade development
+
+```bash
+npx create-next-app@latest babpharma --typescript --tailwind --eslint --app
+```
+
+### Styling: **Tailwind CSS + Framer Motion**
+**Why Ideal:**
+- Claude Code excels at generating Tailwind classes
+- Rapid prototyping with AI assistance
+- Framer Motion for pharmaceutical-grade animations
+- Consistent design system generation
+
+```bash
+npm install framer-motion clsx tailwind-merge
+```
+
+### 3D Graphics: **React Three Fiber + Drei**
+**Why Best Choice:**
+- React-based, familiar to Claude's training
+- Excellent documentation for AI code generation
+- Component-based 3D development
+- Perfect for molecular visualizations
+
+```bash
+npm install @react-three/fiber @react-three/drei three
+npm install --save-dev @types/three
+```
+
+## 🧬 Pharmaceutical-Specific Tech Stack
+
+### Content Management: **Sanity CMS**
+**Why Superior for Pharma:**
+- Headless CMS with excellent Claude Code integration
+- HIPAA-compliant hosting options
+- Real-time collaboration for regulatory teams
+- Structured content for drug information
+- Version control for compliance tracking
+
+```bash
+npm install @sanity/client next-sanity
+```
+
+### Database: **Supabase (PostgreSQL)**
+**Why Recommended:**
+- AI-friendly SQL generation with Claude
+- HIPAA-compliant with proper configuration
+- Real-time subscriptions for live data
+- Built-in authentication and security
+- Row Level Security for sensitive pharmaceutical data
+
+```bash
+npm install @supabase/supabase-js
+```
+
+### Authentication: **Clerk**
+**Why Perfect:**
+- Pre-built components Claude can easily integrate
+- HIPAA-compliant user management
+- Multi-factor authentication for healthcare professionals
+- Role-based access control
+
+```bash
+npm install @clerk/nextjs
+```
+
+## 🎨 **BAB Pharma Brand Integration**
+
+### **Official Brand Colors Implementation**
+```scss
+// BAB Pharma Official Color Palette
+:root {
+  /* Primary Brand Colors */
+  --hero-purple: #40296e;
+  --medium-turquoise: #62c6c2;
+  --charcoal: #2E2A2B;
+  --whisper: #F7F7F7;
+  
+  /* Tailwind Custom Colors */
+  --primary: var(--hero-purple);
+  --secondary: var(--medium-turquoise);
+  --accent: var(--charcoal);
+  --background: var(--whisper);
+}
+
+// Tailwind Configuration
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        'bab-purple': '#40296e',
+        'bab-turquoise': '#62c6c2',
+        'bab-charcoal': '#2E2A2B',
+        'bab-whisper': '#F7F7F7',
+      }
+    }
+  }
+}
+```
+
+### **Official BAB Pharma Typography Implementation**
+```bash
+# Install Official BAB Pharma Fonts
+npm install @fontsource/lora @fontsource/quicksand
+
+# For Arabic fonts (Bukra & Somar), use web fonts or custom imports
+# These may need to be added via Google Fonts or custom font files
+```
+
+```scss
+// Font Configuration
+@import '@fontsource/lora/400.css';           // Headlines (English)
+@import '@fontsource/quicksand/300.css';      // Light text (English)
+@import '@fontsource/quicksand/400.css';      // Body text (English)
+@import '@fontsource/quicksand/700.css';      // Bold text (English)
+
+// Arabic fonts (add via Google Fonts or custom)
+@import url('https://fonts.googleapis.com/css2?family=Bukra:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Somar:wght@300;400;700&display=swap');
+
+// CSS Custom Properties
+:root {
+  /* English Typography */
+  --font-headline-en: 'Lora', serif;
+  --font-body-en: 'QuickSand', sans-serif;
+  
+  /* Arabic Typography */
+  --font-headline-ar: 'Bukra', sans-serif;
+  --font-body-ar: 'Somar', sans-serif;
+}
+
+// Tailwind Font Configuration
+fontFamily: {
+  // English Fonts
+  'headline': ['Lora', 'serif'],
+  'body': ['QuickSand', 'sans-serif'],
+  
+  // Arabic Fonts
+  'headline-ar': ['Bukra', 'sans-serif'],
+  'body-ar': ['Somar', 'sans-serif'],
+}
+```
+
+### **Typography Usage Guidelines for AI Development**
+```scss
+// English Text Classes
+.headline-en { font-family: 'Lora', serif; }
+.body-en { font-family: 'QuickSand', sans-serif; }
+
+// Arabic Text Classes
+.headline-ar { font-family: 'Bukra', sans-serif; }
+.body-ar { font-family: 'Somar', sans-serif; }
+
+// Responsive Typography Hierarchy
+h1 { 
+  font-family: var(--font-headline-en); 
+  font-weight: 400;
+}
+h1[lang="ar"] { 
+  font-family: var(--font-headline-ar); 
+  font-weight: 700;
+}
+
+p, body { 
+  font-family: var(--font-body-en); 
+  font-weight: 400;
+}
+p[lang="ar"], body[lang="ar"] { 
+  font-family: var(--font-body-ar); 
+  font-weight: 400;
+}
+```
+
+### Charts & Data Visualization: **Recharts + D3.js**
+**Why Best for Pharma:**
+- Clinical trial data visualization
+- Drug efficacy charts
+- Molecular interaction graphs
+- Claude Code can generate complex visualizations
+
+```bash
+npm install recharts d3 @types/d3
+```
+
+## 🔬 Specialized Pharmaceutical Libraries
+
+### Molecular Visualization: **3Dmol.js + Custom Three.js**
+**Why Essential:**
+- Pharmaceutical-specific molecular rendering
+- Integration with React Three Fiber
+- Chemical structure visualization
+- Drug compound interactions
+
+```bash
+npm install 3dmol
+```
+
+### Medical Icons: **React Icons + Lucide + Custom Medical Set**
+**Why Important:**
+- Comprehensive medical iconography
+- Pharmaceutical symbols
+- Claude can easily implement
+
+```bash
+npm install react-icons lucide-react
+```
+
+## 🛡️ Security & Compliance Stack
+
+### Form Handling: **React Hook Form + Zod**
+**Why Secure:**
+- Type-safe form validation
+- HIPAA-compliant data handling
+- Claude Code excellent at generating forms
+
+```bash
+npm install react-hook-form @hookform/resolvers zod
+```
+
+### Environment Management: **T3 Env**
+**Why Secure:**
+- Runtime environment validation
+- Type-safe environment variables
+- Perfect for pharmaceutical compliance
+
+```bash
+npm install @t3-oss/env-nextjs
+```
+
+## 📊 Analytics & Monitoring
+
+### Analytics: **Vercel Analytics + Custom Healthcare Tracking**
+**Why Recommended:**
+- Privacy-compliant analytics
+- Custom pharmaceutical KPIs
+- Real-time performance monitoring
+
+```bash
+npm install @vercel/analytics
+```
+
+### Error Monitoring: **Sentry**
+**Why Critical:**
+- HIPAA-compliant error tracking
+- Performance monitoring for 3D content
+- Regulatory compliance monitoring
+
+```bash
+npm install @sentry/nextjs
+```
+
+## 🚀 Deployment & Infrastructure
+
+### Hosting: **Vercel Pro**
+**Why Optimal:**
+- Seamless Next.js deployment
+- Edge functions for global pharmaceutical reach
+- HIPAA-compliant with proper configuration
+- Excellent Claude Code integration
+
+### CDN & Assets: **Cloudflare**
+**Why Essential:**
+- Global pharmaceutical content delivery
+- DDoS protection for healthcare sites
+- Image optimization for medical imagery
+
+## 🤖 AI Integration Stack
+
+### AI Content Generation: **OpenAI API + Custom Pharmaceutical Prompts**
+**Why Powerful:**
+- Drug information generation
+- Patient education content
+- Regulatory content assistance
+
+```bash
+npm install openai
+```
+
+### Code Generation: **Cursor IDE + Claude Code**
+**Why Perfect:**
+- Real-time code assistance
+- Pharmaceutical compliance checking
+- 3D component generation
+- Complex animation creation
+
+## 📱 Progressive Web App Features
+
+### PWA Setup: **Next-PWA**
+**Why Important:**
+- Offline access for healthcare professionals
+- App-like experience on mobile devices
+- Reliable access in clinical settings
+
+```bash
+npm install next-pwa
+```
+
+## 🧪 Development & Testing Stack
+
+### Testing: **Jest + React Testing Library + Playwright**
+**Why Comprehensive:**
+- Unit testing for pharmaceutical calculations
+- Integration testing for 3D components
+- E2E testing for compliance workflows
+
+```bash
+npm install --save-dev jest @testing-library/react @testing-library/jest-dom playwright
+```
+
+### Code Quality: **ESLint + Prettier + Husky**
+**Why Essential:**
+- Pharmaceutical-grade code quality
+- Automated compliance checking
+- Git hooks for quality assurance
+
+```bash
+npm install --save-dev eslint prettier husky lint-staged
+```
+
+## 🔧 Complete Installation Script
+
+```bash
+# Create Next.js project
+npx create-next-app@latest babpharma --typescript --tailwind --eslint --app
+
+cd babpharma
+
+# Core dependencies
+npm install @react-three/fiber @react-three/drei three
+npm install framer-motion clsx tailwind-merge
+npm install @sanity/client next-sanity
+npm install @supabase/supabase-js
+npm install @clerk/nextjs
+npm install recharts d3 @types/d3
+npm install react-hook-form @hookform/resolvers zod
+npm install @t3-oss/env-nextjs
+npm install @vercel/analytics
+npm install @sentry/nextjs
+npm install openai
+npm install next-pwa
+npm install react-icons lucide-react
+npm install 3dmol
+
+# Shadcn/UI setup
+npx shadcn-ui@latest init
+npx shadcn-ui@latest add button card form input dialog sheet tabs
+
+# Development dependencies
+npm install --save-dev @types/three
+npm install --save-dev jest @testing-library/react @testing-library/jest-dom
+npm install --save-dev playwright
+npm install --save-dev eslint prettier husky lint-staged
+```
+
+## 💡 Why This Stack is Perfect for Cursor + Claude Code
+
+### 1. **AI Code Generation Friendly**
+- Well-documented patterns Claude understands
+- Component-based architecture for modular development
+- TypeScript for better AI code completion
+
+### 2. **Pharmaceutical Industry Optimized**
+- HIPAA compliance capabilities
+- Regulatory content management
+- Scientific data visualization tools
+- Medical-grade security features
+
+### 3. **3D Capabilities**
+- React Three Fiber for molecular visualizations
+- Framer Motion for pharmaceutical animations
+- D3.js for clinical data presentations
+
+### 4. **Enterprise Performance**
+- Next.js optimization for global reach
+- CDN integration for medical imagery
+- Progressive Web App capabilities
+
+### 5. **Development Efficiency**
+- Rapid prototyping with Tailwind
+- Pre-built components with Shadcn/UI
+- Automated testing and compliance checking
+
+## 🎯 Cursor + Claude Code Optimization Tips
+
+### 1. **Project Structure for AI**
+```
+src/
+├── components/
+│   ├── pharmaceutical/    # Drug-specific components
+│   ├── 3d/               # Three.js components
+│   ├── ui/               # Shadcn components
+│   └── forms/            # Compliance forms
+├── lib/
+│   ├── pharmaceutical/   # Drug calculations
+│   ├── 3d/              # Three.js utilities
+│   └── compliance/      # Regulatory helpers
+└── app/
+    ├── drugs/           # Product pages
+    ├── research/        # R&D section
+    └── compliance/      # Regulatory pages
+```
+
+### 2. **Claude Code Prompts for Pharmaceutical Development**
+- "Create a 3D molecular visualization component for drug X"
+- "Generate HIPAA-compliant form for patient data"
+- "Build responsive pharmaceutical product grid"
+- "Create animated drug mechanism of action"
+
+### 3. **AI-Assisted Development Workflow**
+1. Use Claude Code for rapid component generation
+2. Leverage Cursor's AI autocomplete for pharmaceutical calculations
+3. Generate compliance-ready forms automatically
+4. Create 3D medical visualizations with AI assistance
+
+
+This tech stack provides the perfect balance of pharmaceutical industry requirements, cutting-edge 3D capabilities, and AI-assisted development efficiency using Cursor and Claude Code.

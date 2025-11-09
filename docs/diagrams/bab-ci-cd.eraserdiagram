@@ -1,0 +1,18 @@
+cloud-architecture-diagram
+// CI/CD for BAB Pharma Website
+Developer [label: "Developer", icon: user]
+Repo [label: "Git Repository", icon: git-branch]
+CI [label: "CI (Lint/Type/Test)", icon: cpu]
+Preview [label: "Vercel Preview", icon: monitor]
+Review [label: "Code Review", icon: check]
+Prod [label: "Vercel Production", icon: server]
+Sentry [label: "Sentry Releases", icon: alert-triangle]
+Analytics [label: "Vercel Analytics", icon: bar-chart]
+
+Developer > Repo: Push PR
+Repo > CI
+CI > Preview: Build & Deploy
+Preview > Review: QA & Approvals
+Review > Prod: Merge to main
+Prod > Sentry: Release & sourcemaps
+Prod > Analytics: Web Vitals

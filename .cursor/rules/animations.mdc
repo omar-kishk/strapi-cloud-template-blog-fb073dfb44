@@ -1,0 +1,150 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# AI Website Illustration Prompt Guide
+*Create smooth, scroll-driven illustrations that captivate and engage*
+
+## Core Visual Style
+**Create illustrations that are:**
+- **Fluid and organic** - Use flowing lines, smooth curves, and natural movement patterns
+- **Minimalist yet impactful** - Clean compositions with purposeful negative space
+- **Dimensionally rich** - Subtle 3D elements, layered depth, and floating objects
+- **Gradient-heavy** - Smooth color transitions from deep purples to electric blues, sunset oranges to mint greens
+- **Geometrically balanced** - Mix organic shapes with clean geometric forms
+
+## Scroll Animation Behaviors
+**Parallax Movement:**
+- Background elements move slower than foreground (0.3x speed)
+- Mid-ground elements at 0.6x speed
+- Foreground elements at normal speed (1x)
+- Create 5-7 distinct depth layers
+
+**Morphing Transformations:**
+- Shapes gradually transform as user scrolls
+- Circles become squares, lines become curves
+- Color gradients shift through spectrum
+- Opacity changes create breathing effects
+
+**Reveal Animations:**
+- Elements slide in from edges (left: -100px to 0)
+- Fade in with scale (scale: 0.8 to 1, opacity: 0 to 1)
+- Rotate into view (rotate: 15deg to 0deg)
+- Stagger animations by 150ms delays
+
+## Specific Illustration Elements
+
+**Floating Objects:**
+- Abstract geometric shapes (dodecahedrons, toroids, crystals)
+- Soft glowing orbs with inner light
+- Wireframe structures that build/deconstruct
+- Particle systems that flow like digital wind
+
+**3D Model Animations:**
+- Product models that rotate smoothly on scroll (Y-axis rotation)
+- Architectural models that assemble piece by piece
+- Character models with subtle breathing/idle animations
+- Abstract sculptures that morph between different forms
+- Mechanical objects with working parts (gears, pistons, rotors)
+- Organic models that grow/evolve (plants, crystalline structures)
+
+**Background Textures:**
+- Subtle noise overlays (10% opacity)
+- Gradient meshes that shift color temperature
+- Dot matrix patterns that pulse gently
+- Flowing wave forms that undulate smoothly
+
+**Interactive Highlights:**
+- Elements that respond to cursor proximity
+- Gentle scale increases on hover (1.05x)
+- Color saturation boosts on interaction
+- Soft shadow depth changes
+
+## Technical Animation Specs
+
+**Smooth Performance:**
+- Use `transform` properties only (translate3d, scale, rotate)
+- Implement `will-change: transform` on moving elements
+- Target 60fps with `requestAnimationFrame`
+- Use CSS `ease-out` timing (cubic-bezier(0.25, 0.46, 0.45, 0.94))
+
+**Scroll Triggers:**
+- Activate animations when elements are 20% in viewport
+- Complete animations when elements are 80% in viewport
+- Use intersection observer for performance
+- Implement scroll velocity detection for dynamic speeds
+
+**Responsive Behavior:**
+- Scale illustration complexity based on device capability
+- Reduce particle counts on mobile devices
+- Simplify animations for users with `prefers-reduced-motion`
+- Maintain aspect ratios across all screen sizes
+
+## Content Integration
+
+**Text Reveal Effects:**
+- Words appear as illustration elements move
+- Typography follows the same easing curves
+- Letter-by-letter reveals with 50ms stagger
+- Blur-to-focus transitions (filter: blur(4px) to blur(0))
+
+**Section Transitions:**
+- Illustrations morph to match content themes
+- Color schemes shift between page sections
+- Elements break apart and reform for new contexts
+- Smooth crossfades between illustration states
+
+**Call-to-Action Enhancement:**
+- Subtle particle effects around buttons
+- Pulsing glows that sync with user attention
+- Directional arrows that form from scattered dots
+- Engagement rings that expand on hover
+
+## Performance Optimization
+
+**Loading Strategy:**
+- Preload critical animation frames
+- Use CSS animations for simple transforms
+- Implement JavaScript only for complex interactions
+- Lazy load non-critical illustration elements
+
+**Accessibility Considerations:**
+- Provide `prefers-reduced-motion` alternatives
+- Ensure illustrations don't interfere with text readability
+- Maintain focus indicators that work with animations
+- Include alt descriptions for decorative elements
+
+## Implementation Notes
+
+**CSS Custom Properties:**
+```css
+:root {
+  --scroll-progress: 0;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --primary-hue: 220;
+  --animation-speed: 1s;
+}
+```
+
+**JavaScript Integration:**
+- Update CSS custom properties based on scroll position
+- Use IntersectionObserver for performance
+- Implement smooth scroll detection
+- Add device capability detection
+- Initialize 3D scenes with Three.js or WebGL
+- Implement 3D model loading with progress indicators
+- Set up camera controls that respond to scroll
+- Create 3D lighting systems that follow user interaction
+
+**Fallback Strategy:**
+- Static illustrations for unsupported browsers
+- Simplified animations for low-end devices
+- Graceful degradation for accessibility users
+- Progressive enhancement approach
+
+---
+
+
+*Remember: The goal is to create illustrations that feel alive and responsive while never interfering with the user's primary task of consuming content. Every animation should have purpose and enhance the storytelling experience.*

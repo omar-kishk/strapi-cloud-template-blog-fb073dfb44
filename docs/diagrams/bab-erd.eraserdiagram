@@ -1,0 +1,175 @@
+entity-relationship-diagram
+
+Products [icon: package, color: purple] {
+  id uuid PK
+  sku varchar unique
+  name varchar
+  brand_name varchar
+  generic_name varchar
+  product_type varchar // novel_generic | device | nutraceutical
+  dosage_form varchar
+  strength varchar
+  pack_size varchar
+  gtin varchar
+  status varchar // active | pending | discontinued
+  created_at timestamp
+  updated_at timestamp
+}
+
+TherapeuticAreas [icon: folder, color: green] {
+  id uuid PK
+  name varchar
+  description text
+}
+
+ProductTherapeuticAreas [icon: tag, color: blue] {
+  product_id uuid FK
+  therapeutic_area_id uuid FK
+}
+
+Suppliers [icon: building, color: orange] {
+  id uuid PK
+  name varchar
+  country varchar
+  contact_email varchar
+  website varchar
+}
+
+Certifications [icon: award, color: yellow] {
+  id uuid PK
+  type varchar // SFDA | ISO13485 | GMP | CE
+  issued_by varchar
+  valid_from date
+  valid_to date
+  file_url varchar
+}
+
+ProductCertifications [icon: check-circle, color: yellow] {
+  product_id uuid FK
+  certification_id uuid FK
+}
+
+RegulatoryDocs [icon: file-text, color: teal] {
+  id uuid PK
+  product_id uuid FK
+  doc_type varchar // IFU | SDS | COA | Approval
+  version varchar
+  file_url varchar
+  approved_by varchar
+  approved_at timestamp
+}
+
+Warehouses [icon: home, color: gray] {
+  id uuid PK
+  name varchar
+  city varchar
+  region varchar
+  temperature_range varchar
+}
+
+Batches [icon: layers, color: gray] {
+  id uuid PK
+  product_id uuid FK
+  lot_number varchar
+  mfg_date date
+  exp_date date
+  storage_condition varchar
+}
+
+Inventory [icon: database, color: gray] {
+  id uuid PK
+  warehouse_id uuid FK
+  batch_id uuid FK
+  quantity_available int
+  reserved_qty int
+  updated_at timestamp
+}
+
+Customers [icon: users, color: blue] {
+  id uuid PK
+  customer_type varchar // provider | pharmacy | government
+  name varchar
+  nupco_id varchar
+  contact_email varchar
+}
+
+Orders [icon: shopping-cart, color: blue] {
+  id uuid PK
+  customer_id uuid FK
+  order_type varchar // NUPCO | Pharmacy | Provider
+  status varchar
+  total_amount decimal
+  created_at timestamp
+}
+
+OrderItems [icon: list, color: blue] {
+  id uuid PK
+  order_id uuid FK
+  product_id uuid FK
+  quantity int
+  unit_price decimal
+  subtotal decimal
+}
+
+Shipments [icon: truck, color: blue] {
+  id uuid PK
+  order_id uuid FK
+  carrier varchar
+  tracking_no varchar
+  shipped_at timestamp
+  delivered_at timestamp
+  status varchar
+}
+
+Partners [icon: handshake, color: orange] {
+  id uuid PK
+  name varchar
+  country varchar
+  website varchar
+  onboarding_status varchar
+}
+
+Tenders [icon: briefcase, color: orange] {
+  id uuid PK
+  reference_no varchar
+  buyer varchar // NUPCO
+  open_date date
+  close_date date
+  status varchar
+}
+
+TenderItems [icon: briefcase, color: orange] {
+  id uuid PK
+  tender_id uuid FK
+  product_id uuid FK
+  required_qty int
+  specs text
+}
+
+Users [icon: user, color: purple] {
+  id uuid PK
+  email varchar unique
+  role varchar // admin | sales | regulator | partner | customer
+  customer_id uuid FK
+}
+
+// Relationships
+Products 1--* Batches
+Products 1--* RegulatoryDocs
+Products 1--* ProductCertifications
+Products 1--* OrderItems
+Products 1--* TenderItems
+TherapeuticAreas 1--* ProductTherapeuticAreas
+ProductTherapeuticAreas *--1 Products
+Suppliers 1--* Products
+Certifications 1--* ProductCertifications
+Warehouses 1--* Inventory
+Batches 1--* Inventory
+Customers 1--* Orders
+Orders 1--* OrderItems
+Orders 1--1 Shipments
+Partners 1--* Tenders
+Tenders 1--* TenderItems
+Users 1--* Orders
+
+

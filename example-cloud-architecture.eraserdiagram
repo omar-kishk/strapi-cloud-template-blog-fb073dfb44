@@ -1,0 +1,32 @@
+cloud-architecture-diagram
+// Simple Web Application Architecture
+
+// Frontend Layer
+WebApp [label: "Web Application", icon: monitor]
+
+// Application Layer
+LoadBalancer [label: "Load Balancer", icon: aws-elb]
+AppServer1 [label: "App Server 1", icon: server]
+AppServer2 [label: "App Server 2", icon: server]
+
+// Data Layer
+Database [label: "PostgreSQL", icon: database]
+Cache [label: "Redis Cache", icon: aws-elasticache]
+Storage [label: "File Storage", icon: aws-s3]
+
+// External Services
+EmailService [label: "Email Service", icon: mail]
+PaymentAPI [label: "Payment Gateway", icon: credit-card]
+
+// Connections
+WebApp > LoadBalancer: HTTPS
+LoadBalancer > AppServer1
+LoadBalancer > AppServer2
+AppServer1 > Database
+AppServer2 > Database
+AppServer1 > Cache
+AppServer2 > Cache
+AppServer1 > Storage
+AppServer2 > Storage
+AppServer1 > EmailService
+AppServer1 > PaymentAPI
